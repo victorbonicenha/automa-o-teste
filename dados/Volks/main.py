@@ -11,13 +11,14 @@ day = datetime.today().strftime('%d')
 data_atual = datetime.today().strftime('%Y-%m-%d')
 month_previous = int(month_value)-1
 
-
 #MODEL 
+
 class UserModel:
     USERNAME = "evsilva@paranoa.com.br"
     PASSWORD = "Paranoa.123"
 
 # CONTROLLER 
+
 class WebController:
     def __init__(self):
         self.site = webdriver.Chrome()
@@ -26,7 +27,7 @@ class WebController:
         self.site.get(link)
         self.site.maximize_window()
         sleep(1)
-    
+
     def login(self):
             self.site.find_element(By.XPATH, '//*[@placeholder="Username"]').send_keys(UserModel.USERNAME)
             sleep(1)
@@ -35,7 +36,7 @@ class WebController:
             sleep(1)
 
             self.site.find_element(By.XPATH, "/html/body/app-root/app-loginform/div/div[2]/div[2]/form/div[2]/button").click()
-            sleep(3)
+            sleep(5)
 
     def navigate(self):
         button = self.site.find_element(By.XPATH, "/html/body/app-root/app-nav/div/div/div/div[2]/app-home/div/div[2]/div[1]/div[2]/div[4]/div/div")
@@ -46,7 +47,7 @@ class WebController:
         button_SQP = self.site.find_element(By.XPATH, "/html/body/app-root/app-nav/div/div/div/div[2]/app-home/div/div[2]/div[2]/div[5]/container-element/div/div/div/div/button")
         button_SQP.click()
         self.site.execute_script("arguments[0].scrollIntoView()", button_SQP)
-        sleep(5)
+        sleep(8)
 
     def buttons(self):
         all_windows = self.site.window_handles
@@ -79,9 +80,10 @@ class WebController:
     def download(self):
         button_download = self.site.find_element(By.XPATH, '//*[@id="co_Filters"]/div/div[2]/div/div[3]')
         button_download.click()
-        sleep(15)
+        sleep(20)
 
 # EXECUÇÃO 
+    
     def run():
         controller = WebController()
         controller.open_url()
